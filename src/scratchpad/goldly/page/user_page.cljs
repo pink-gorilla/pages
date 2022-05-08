@@ -33,9 +33,11 @@
      [:p "user-page"]
      [:p "user: " user]
      [:p "page: " page]
-     (:page @page-state)
+     (-> @page-state :page render-vizspec )
      (into [:div]
-           (for [page ["demo1" "demo2"]]
-             [page-link "daslu" page]))]))
+           (for [i [1 2 3]]
+             [page-link "daslu" (str "demo" i)]))
+     ;; (-> @page-state :page pr-str)
+     ]))
 
 (add-page user-page :user-page)
