@@ -2,7 +2,7 @@
   (:require
     [pages]
     [page :refer [show-page]]
-    [user :refer [add-page]]
+    [user :refer [set-page]]
    )
   )
 
@@ -23,10 +23,10 @@
   (let [{:keys [user page]} route-params]
     [user-page-wrapped user page]))
 
-(add-page user-page :user-page)
+(set-page user-page :user-page)
 
 (defn default-page [_]
   [show-page "seed" "index"])
 
-(add-page default-page :default-page)
+(set-page default-page :default-page)
 

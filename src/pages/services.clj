@@ -23,5 +23,12 @@
 (s/add {:page/get get-page})
 
 (comment
+  (db/connect! (fn [] (println "schema was added!")))
+  (db/connect! add-seed)
+
   (get-page "daslu" "demo1")
-  (get-page "daslu" "demo11"))
+
+  (get-page "daslu" "demo11")
+  
+;
+  )

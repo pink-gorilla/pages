@@ -72,6 +72,30 @@
        (map :page/name)))
 
 
+(defn q-page-id [user-name page-name]
+  (let [pq '[:find ?page-id .
+            :in $ ?page-name-full
+            :where
+            [?page-id :page/name-full ?page-name-full]]
+        name-full (str user-name "/" page-name)]
+   (q pq name-full)
+  ))
+
+
+
+(defn set-page [user-name page-name content]
+  (let [name-full (str user-name "/" page-name)
+        page-id (q-page-id user-name page-name)]
+    (if page-id 
+      (do (info "updating page " name-full "id: " page-id)
+          (transact [{:db/id page-id
+                      :page/content (pr-str content)}]))
+      (do (info "adding new page: " name-full)
+         (transact [{:page/user [:user/name user-name]
+                     :page/name-full name-full
+                     :page/name page-name
+                     :page/content (pr-str content)}])))))
+
 (def load-page
   '[:find (pull ?page-id [:page/content]) .
     :in $ ?user-name ?page-name
@@ -82,30 +106,28 @@
 
 
 
-(defn add-page [user-name name content]
-  (transact [{:page/user [:user/name user-name]
-              :page/name name
-              :page/content (pr-str content)}]))
-
-
 
 (comment
+
+
   (users)
 
   (q find-user "seed")
+  (q find-user "woldemord")
 
   (q load-page "seed" "index")
   (user-pages "seed")
 
   (add-user "daslu" "mysecretPassword!!1")
-  (add-page "daslu" "demo1" [:p.bg-green-500.m-5 "hello world 1"])
-  (add-page "daslu" "demo2" [:p.bg-red-500.m-5 "hello world 2"])
-
   (q find-user "daslu")
+  (set-page "daslu" "demo1" [:p.bg-green-500.m-5 "hello world 1"])
+  (set-page "daslu" "demo2" [:p.bg-red-500.m-5 "hello world 2"])
+  (set-page "daslu" "demo9" [:p.bg-red-500.m-5 "hello world 2"])
+  (q-page-id "daslu" "demo1")
+  (q-page-id "daslu" "demo0000")
+
   (q load-page "daslu" "demo1")
   (user-pages "daslu")
-
-
 
 ;  
   )

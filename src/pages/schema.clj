@@ -10,10 +10,13 @@
     :db/cardinality :db.cardinality/one}])
 
 (def page
-  [{:db/ident :page/user
+  [{:db/ident :page/user ; link to the user
     :db/valueType :db.type/ref
     :db/cardinality :db.cardinality/one}
    {:db/ident :page/name
+    :db/valueType :db.type/string
+    :db/cardinality :db.cardinality/one}
+   {:db/ident :page/name-full
     :db/valueType :db.type/string
     :db/cardinality :db.cardinality/one
     :db/unique :db.unique/value}

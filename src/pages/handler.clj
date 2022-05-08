@@ -34,16 +34,41 @@
       )
 ))
 
+(defn set-page [user password page content]
+  (let [r-user (db/q db/find-user user)]
+    (if r-user
+       (let [correct-password (:user/password r-user)]
+        (if (= password correct-password)
+           (db/set-page user page content)
+           {:error "wrong password!"}))
+      (do 
+        (db/add-user user password)
+        (db/set-page user page content)))))
+
+
 (defn page-publish-handler
   [{:keys [query-params] :as req}]
-  (warn "page-publish-handler: " req)
-  (let [s (body-string req)
-        body (edn/read-string s)
-        {:keys [user password page content]} body]
-    (warn "string:" s "hiccup: " body)
-    (warn "password: " password)
-    (db/add-page user page content)
-    (res/response {:message "src sent."})))
+  ;(warn "page-publish-handler: " req)
+  (let [user (get query-params "user")
+        page (get query-params "page")
+        password (get query-params "password")
+        _ (info "publishing :user " user "page: " page "password: " password)
+        body (body-string req)
+        content (edn/read-string body)]
+    (warn "body: " body)
+    (warn "content: " content)
+    (try 
+      (let [r (set-page user password page content)]
+        (info "add result: " r)
+       r)
+      (catch Exception ex
+        (warn "exception in publish: " ex)
+        ;(res/response {:headers {"Content-Type" "application/edn"}
+        ;               :body (pr-str {:error (pr-str ex)})})
+        {:error (pr-str ex)}
+        )
+      
+    )))
 
 
 
