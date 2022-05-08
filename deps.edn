@@ -4,6 +4,9 @@
  :deps {org.clojure/clojure {:mvn/version  "1.10.3"}
         org.pinkgorilla/pinkie {:mvn/version "0.3.13"} ; component registry (used in xtension discovery)
         org.pinkgorilla/ui-repl {:mvn/version "0.0.43"} ; for reagent
+         io.replikativ/datahike {:mvn/version "0.4.1480"
+                                ;:exclusions [[org.clojure/clojurescript]]
+                                 }
         }
 
  :aliases
