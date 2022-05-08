@@ -1,0 +1,10 @@
+{:ns-clj [page.services]
+ :keybindings []
+ :goldly {;; build
+          :lazy true
+          ;; run-time
+          :autoload-cljs-dir ["demoapp"]
+          :routes {:app {"scratchpad" :scratchpad
+                         [:user "/" :page] :user-page}
+                   :api {"scratchpad" {:get :scratchpad/get
+                                       :post :scratchpad/set}}}}}
