@@ -1,4 +1,4 @@
-(ns page.schema)
+(ns pages.schema)
 
 (def user
   [{:db/ident :user/name

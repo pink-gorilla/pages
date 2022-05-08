@@ -1,5 +1,6 @@
-(ns page.seed
-  (:require [page.db :refer [add-user add-page]]))
+(ns pages.seed
+  (:require 
+   [pages.db :refer [add-user add-page]]))
 
 (def vega-heatmap
   '[user/vegalite
@@ -29,4 +30,12 @@
 
 (defn add-seed []
   (add-user "seed" "mysecretPassword!!1")
-  (add-page "seed" "demo3" vega-heatmap))
+  
+  (add-page "seed" "index" vega-heatmap)
+
+  (add-page "seed" "demo3" vega-heatmap)
+
+  (add-page "seed" "demo3" vega-heatmap)
+  
+  
+  )

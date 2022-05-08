@@ -7,7 +7,7 @@
  :pinkie {}
  ; run time
  :clj-require []
- :autoload-cljs-dir ["page/goldly/lib"
-                     "page/goldly/page"]
- :autoload-clj-ns [page.services 
-                   page.handler]}
+ :autoload-cljs-dir ["pages/goldly/lib"
+                     "pages/goldly/page"]
+ :autoload-clj-ns [pages.services 
+                   pages.handler]}

@@ -5,7 +5,13 @@
           :lazy true
           ;; run-time
           :autoload-cljs-dir ["demoapp"]
-          :routes {:app {"" :default-page
+          :routes {:app {"" :default-page ; essentially a redirect
                          [:user "/" :page] :user-page}
-                   :api {"page" {:get :page/get
-                                 :post :page/set}}}}}
+                   :api {; all api endpoints for pages are under
+                         ; "/api/pages"
+                         ; this is to not have conflict with possible other servies
+                         "pages/" {"users" {:get :pages/users}
+                                   "user-pages" {:get :pages/user-pages}
+                                   "page" {:get :pages/page-get
+                                           :post :pages/page-publish}
+                                   } }}}}

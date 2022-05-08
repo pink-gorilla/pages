@@ -1,9 +1,9 @@
-(ns page.services
+(ns pages.services
   (:require
    [clojure.edn :as edn]
    [goldly.service.core :as s]
-   [page.db :as db]
-   [page.seed :refer [add-seed]]))
+   [pages.db :as db]
+   [pages.seed :refer [add-seed]]))
 
 (db/connect! add-seed)
 
