@@ -22,3 +22,4 @@ goldly_bindings_generated.cljs
 .lsp
 .webly
 .clj-kondo
+db/

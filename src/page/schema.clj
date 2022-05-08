@@ -1,32 +1,26 @@
 (ns page.schema)
 
-
-(def aftership
-  [{:db/ident :tracking/id
-    :db/unique :db.unique/identity  ; db.unique/identity or :db.unique/value 
+(def user
+  [{:db/ident :user/name
     :db/valueType :db.type/string
     :db/cardinality :db.cardinality/one}
-   {:db/ident :tracking/invoice
+   {:db/ident :user/password
+    :db/valueType :db.type/string
+    :db/cardinality :db.cardinality/one}])
+
+(def page
+  [{:db/ident :page/user
     :db/valueType :db.type/ref
     :db/cardinality :db.cardinality/one}
-   {:db/ident :tracking/invoice-number
+   {:db/ident :page/name
     :db/valueType :db.type/string
     :db/cardinality :db.cardinality/one}
-   {:db/ident :tracking/email
+   {:db/ident :page/content
     :db/valueType :db.type/string
     :db/cardinality :db.cardinality/one}
-   {:db/ident :tracking/slug
-    :db/valueType :db.type/string
-    :db/cardinality :db.cardinality/one}
-   {:db/ident :tracking/number
-    :db/valueType :db.type/string
-    :db/cardinality :db.cardinality/one}
-   {:db/ident :tracking/tag
-    :db/valueType :db.type/string
-    :db/cardinality :db.cardinality/one}
-   {:db/ident :tracking/date
-    :db/valueType :db.type/string
-    :db/cardinality :db.cardinality/one}
-   {:db/ident :tracking/weight
-    :db/valueType :db.type/double
+   {:db/ident :page/count
+    :db/valueType :db.type/long
     :db/cardinality :db.cardinality/one}])
+
+(def schema
+  (vec (concat user page)))
