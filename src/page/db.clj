@@ -34,3 +34,11 @@
   (if args
     (apply d/q w @conn args)
     (d/q w @conn)))
+
+
+
+(def xero-order
+  '[:find (pull ?id [*]) .
+    :in $ ?inv-no ; ?xxx 
+    :where
+    [?id :invoice/invoice-number ?inv-no]])
