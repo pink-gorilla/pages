@@ -116,6 +116,7 @@
   (q find-user "woldemord")
 
   (q load-page "seed" "index")
+
   (user-pages "seed")
 
   (add-user "daslu" "mysecretPassword!!1")
@@ -128,6 +129,8 @@
 
   (q load-page "daslu" "demo1")
   (user-pages "daslu")
+
+  (user-pages "demo")
 
 ;  
   )

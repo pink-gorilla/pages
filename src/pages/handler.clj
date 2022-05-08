@@ -16,23 +16,25 @@
 
 (defn user-pages-handler
   [{:keys [query-params] :as req}]
-  (warn "user-pages-handler: " req)
-  (let [{:keys [user]} query-params]
-    (-> (db/user-pages user)
-        res/response)))
+  ;(warn "user-pages-handler: " req)
+  (let [user (get query-params "user")]
+    (info "getting page-list for user: " user)
+      (-> (db/user-pages user)
+          res/response)))
 
 (defn page-get-handler
   [{:keys [query-params] :as req}]
-  (warn "page-get-handler: " req)
+  ;(warn "page-get-handler: " req)
   (let [user (get query-params "user")
         page (get query-params "page")]
     (info "getting page: " user "/" page)
-    (let [p (db/load-page user page)]
+    (let [p (db/q db/load-page user page)]
       (info "page: " p)
-      ;(res/response {:body p})
-      p
-      )
-))
+      (res/response 
+        (if p 
+          (:page/content p)
+          {:error "page not found"})))))
+
 
 (defn set-page [user password page content]
   (let [r-user (db/q db/find-user user)]
@@ -55,24 +57,21 @@
         _ (info "publishing :user " user "page: " page "password: " password)
         body (body-string req)
         content (edn/read-string body)]
-    (warn "body: " body)
-    (warn "content: " content)
+    ;(warn "body: " body)
+    ;(warn "content: " content)
     (try 
       (let [r (set-page user password page content)]
         (info "add result: " r)
-       r)
+        (if-let [e (:error r)]
+           (res/response {:error e})
+           (res/response {:success "page was published successfully!"})))
       (catch Exception ex
         (warn "exception in publish: " ex)
         ;(res/response {:headers {"Content-Type" "application/edn"}
         ;               :body (pr-str {:error (pr-str ex)})})
-        {:error (pr-str ex)}
-        )
-      
-    )))
-
-
-
-
+        ;{:error (pr-str ex)}
+         (res/response {:error "could not publish page - exception!"})
+        ))))
 
 
 (add-ring-handler :pages/users (wrap-api-handler users-handler))
