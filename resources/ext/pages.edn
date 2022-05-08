@@ -1,4 +1,4 @@
-{:name "scratchpad"
+{:name "pages"
  ; build time
  :lazy false  ; we dont have any code, lazy fucks up size report
  :cljs-namespace []
@@ -7,6 +7,7 @@
  :pinkie {}
  ; run time
  :clj-require []
- :autoload-cljs-dir ["scratchpad/goldly/lib"
-                     "scratchpad/goldly/page"]
- :autoload-clj-ns [scratchpad.handler]}
+ :autoload-cljs-dir ["page/goldly/lib"
+                     "page/goldly/page"]
+ :autoload-clj-ns [page.services 
+                   page.handler]}

@@ -1,10 +1,11 @@
-{:ns-clj [page.services page.handler]
+{:ns-clj [;page.services page.handler
+          ]
  :keybindings []
  :goldly {;; build
           :lazy true
           ;; run-time
           :autoload-cljs-dir ["demoapp"]
-          :routes {:app {"scratchpad" :scratchpad
+          :routes {:app {"" :default-page
                          [:user "/" :page] :user-page}
                    :api {"page" {:get :page/get
                                  :post :page/set}}}}}

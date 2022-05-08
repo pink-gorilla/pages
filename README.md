@@ -1,7 +1,6 @@
-# viz-spec [![GitHub Actions status |pink-gorilla/viz-spec](https://github.com/pink-gorilla/viz-spec/workflows/CI/badge.svg)](https://github.com/pink-gorilla/viz-spec/actions?workflow=CI)[![Clojars Project](https://img.shields.io/clojars/v/org.pinkgorilla/viz-spec.svg)](https://clojars.org/org.pinkgorilla/viz-spec)
+# pages [![GitHub Actions status |pink-gorilla/pages](https://github.com/pink-gorilla/pages/workflows/CI/badge.svg)](https://github.com/pink-gorilla/pages/actions?workflow=CI)[![Clojars Project](https://img.shields.io/clojars/v/org.pinkgorilla/pages.svg)](https://clojars.org/org.pinkgorilla/pages)
 
-A simple format to define visual specifications. 
-(Formerly Pinkie)
+A website to show user-uploaded pages defined in viz-spec format.
 
 ## End-Users
 - this project is NOT for you! Instead go to:
@@ -10,7 +9,7 @@ A simple format to define visual specifications.
 ## Demo
 
 ```
-clojure -X:demo
+clojure -X:pages
 ```
 Navigate Browser to localhost:8080
 

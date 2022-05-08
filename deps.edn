@@ -4,10 +4,9 @@
  :deps {org.clojure/clojure {:mvn/version  "1.10.3"}
         org.pinkgorilla/pinkie {:mvn/version "0.3.13"} ; component registry (used in xtension discovery)
         org.pinkgorilla/ui-repl {:mvn/version "0.0.43"} ; for reagent
-         io.replikativ/datahike {:mvn/version "0.4.1480"
+        io.replikativ/datahike {:mvn/version "0.4.1480"
                                 ;:exclusions [[org.clojure/clojurescript]]
-                                 }
-        }
+                                }}
 
  :aliases
  {:outdated
@@ -53,27 +52,16 @@
   {:extra-deps {applied-science/deps-library {:mvn/version "0.4.0"}}
    :main-opts ["-m" "applied-science.deps-library"]}
 
-
-  ; BUILD BUNDLE (then exit)
-  #_:build
-  #_{:extra-paths ["demo"]
-     :extra-deps {org.pinkgorilla/goldly {:mvn/version "0.4.512"
-                                          :exclusions [org.pinkgorilla/viz-spec]} ; this project
-                  }
-     :exec-fn goldly.app.build/goldly-build
-     :exec-args {:profile "npm-install"
-                 :config ["webly/config.edn" "goldly/config.edn" "scratchpad-config.edn"]}}
-
   ; RUN SERVICES (keep running)
-  :demo
+  :pages
   {:extra-paths ["demo"]
    :extra-deps {org.pinkgorilla/goldly-docs {:mvn/version "0.4.512"
-                                             :exclusions [org.pinkgorilla/viz-spec]} ; this project
+                                             :exclusions [org.pinkgorilla/pages]} ; this project
                 }
    :exec-fn modular.system/start!
    :exec-args {:profile "jetty"
-               :config ["webly/config.edn" "goldly/config.edn" "scratchpad-config.edn"]
-               :services "scratchpad-services.edn"}}
+               :config ["webly/config.edn" "goldly/config.edn" "pages/config.edn"]
+               :services "pages/services.edn"}}
 
 ;           
   }}

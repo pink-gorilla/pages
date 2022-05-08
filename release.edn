@@ -1,4 +1,4 @@
 {:group-id "org.pinkgorilla"
- :artifact-id "viz-spec"
- :scm-url "https://github.com/pink-gorilla/viz-spec/"
+ :artifact-id "pages"
+ :scm-url "https://github.com/pink-gorilla/pages/"
  }

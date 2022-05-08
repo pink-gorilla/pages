@@ -1,8 +1,6 @@
 (ns page.handler
   (:require
    [taoensso.timbre :refer [trace warn debug info error]]
-   [clojure.core.async :refer [go <! <!!]]
-   [clojure.edn]
    [ring.util.response :as res]
    [ring.util.request :refer  [body-string]]
    [modular.webserver.middleware.api :refer [wrap-api-handler]]
