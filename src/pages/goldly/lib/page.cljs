@@ -5,7 +5,6 @@
    [user :refer [resolve-symbol-sci run-a]]
    [pinkie]))
 
-
 (defn safe-resolve [s]
   (try
     (resolve-symbol-sci s)

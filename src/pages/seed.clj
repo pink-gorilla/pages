@@ -1,5 +1,5 @@
 (ns pages.seed
-  (:require 
+  (:require
    [pages.db :refer [add-user set-page]]))
 
 (def vega-heatmap
@@ -30,21 +30,17 @@
 
 (def discover-page
   '[:div
-   [:p.text-xl.text-blue-500 "goldly pages"]
-   [:p "users:"]
-   
+    [:p.text-xl.text-blue-500 "goldly pages"]
+    [:p "users:"]
+
    ;[user/customer {:first "daniel" :last "slutzky"}]
-   [user/users {}]
-   ])
+    [user/users {}]])
 
 (defn add-seed []
   (add-user "seed" "mysecretPassword!!1")
-  
+
   (set-page "seed" "index" discover-page)
 
   (set-page "seed" "demo3" vega-heatmap)
 
-  (set-page "seed" "demo3" vega-heatmap)
-  
-  
-  )
+  (set-page "seed" "demo3" vega-heatmap))

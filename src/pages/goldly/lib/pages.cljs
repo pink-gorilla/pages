@@ -1,20 +1,17 @@
 (ns pages
-  (:require 
+  (:require
    [rf]
-   [user :refer [notify info]]
-   ))
+   [user :refer [notify info]]))
 
 ;; this ns is to be used by users to create pages
 ;; [pages/page-link "user1" "demo1"]
-
 
 (defn goto-page [user page]
   (rf/dispatch [:bidi/goto :user-page
                 :user user :page page
                 :query-params {}]))
 
-
-(defn a-page [{:keys [user page] } & body]
+(defn a-page [{:keys [user page]} & body]
   [:a {:on-click #(goto-page user page)}
    body])
 
@@ -29,7 +26,6 @@
 (defn notify-success [message]
   (info "notify success: " message)
   (notify :info [:p message]))
-
 
 (defn notify-error [message]
   (info "notify error: " message)

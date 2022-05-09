@@ -16,17 +16,16 @@
 
 (defn get-page
   [user page]
-   (let [p (-> (some-> (db/q db/load-page user page)
-                       :page/content
-                       edn/read-string)
-               (or (unknown-user-page user page)))]
-     (info "sending " user "/"page "content: " p)
-     p))
+  (let [p (-> (some-> (db/q db/load-page user page)
+                      :page/content
+                      edn/read-string)
+              (or (unknown-user-page user page)))]
+    (info "sending " user "/" page "content: " p)
+    p))
 
 (s/add {:pages/page get-page
         :pages/users db/users
-        :pages/user-pages db/user-pages
-        })
+        :pages/user-pages db/user-pages})
 
 (comment
   (db/connect! (fn [] (println "schema was added!")))
@@ -35,6 +34,6 @@
   (get-page "daslu" "demo1")
 
   (get-page "daslu" "demo11")
-  
+
 ;
   )

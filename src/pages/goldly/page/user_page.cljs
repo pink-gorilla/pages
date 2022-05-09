@@ -1,10 +1,8 @@
 (ns pages.user-page
   (:require
-    [pages]
-    [page :refer [show-page]]
-    [user :refer [add-page]]
-   )
-  )
+   [pages]
+   [page :refer [show-page]]
+   [user :refer [add-page]]))
 
 (defn user-nav []
   (into [:div]
@@ -25,14 +23,11 @@
 
 (add-page user-page :user-page)
 
-
 (defn user-page-index [{:keys [route-params]}]
   (let [{:keys [user]} route-params]
     [user-page-wrapped user "index"]))
 
 (add-page user-page :user-page-index)
-
-
 
 (defn default-page [_]
   [show-page "seed" "index"])

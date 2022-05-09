@@ -71,30 +71,26 @@
   (->> (q q-user-page-list user)
        (map :page/name)))
 
-
 (defn q-page-id [user-name page-name]
   (let [pq '[:find ?page-id .
-            :in $ ?page-name-full
-            :where
-            [?page-id :page/name-full ?page-name-full]]
+             :in $ ?page-name-full
+             :where
+             [?page-id :page/name-full ?page-name-full]]
         name-full (str user-name "/" page-name)]
-   (q pq name-full)
-  ))
-
-
+    (q pq name-full)))
 
 (defn set-page [user-name page-name content]
   (let [name-full (str user-name "/" page-name)
         page-id (q-page-id user-name page-name)]
-    (if page-id 
+    (if page-id
       (do (info "updating page " name-full "id: " page-id)
           (transact [{:db/id page-id
                       :page/content (pr-str content)}]))
       (do (info "adding new page: " name-full)
-         (transact [{:page/user [:user/name user-name]
-                     :page/name-full name-full
-                     :page/name page-name
-                     :page/content (pr-str content)}])))))
+          (transact [{:page/user [:user/name user-name]
+                      :page/name-full name-full
+                      :page/name page-name
+                      :page/content (pr-str content)}])))))
 
 (def load-page
   '[:find (pull ?page-id [:page/content]) .
@@ -104,11 +100,7 @@
     [?page-id :page/user ?user-id]
     [?page-id :page/name ?page-name]])
 
-
-
-
 (comment
-
 
   (users)
 
@@ -125,10 +117,6 @@
   (set-page "daslu" "demo2" '[:p.bg-red-500.m-5 [user/customer {:first "daniel" :last "slutzky"}]])
   (set-page "daslu" "demo3" '[:p.bg-red-500.m-5 [user/users {}]])
   (set-page "daslu" "index" '[:p.bg-red-500.m-5 [user/user-page "daslu"]])
-
-
-
-
 
   (q-page-id "daslu" "demo1")
   (q-page-id "daslu" "demo0000")
