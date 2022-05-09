@@ -25,6 +25,15 @@
 
 (add-page user-page :user-page)
 
+
+(defn user-page-index [{:keys [route-params]}]
+  (let [{:keys [user]} route-params]
+    [user-page-wrapped user "index"]))
+
+(add-page user-page :user-page-index)
+
+
+
 (defn default-page [_]
   [show-page "seed" "index"])
 

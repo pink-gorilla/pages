@@ -30,7 +30,7 @@
              assoc
              :r-user user
              :r-page page)
-      (run-a page-state [:page] :page/get user page))))
+      (run-a page-state [:page] :pages/page user page))))
 
 (defn show-page [user page]
   (let [page-state (r/atom {:page [:p.bg-red-500.m-1 "loading ..."]})]

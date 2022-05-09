@@ -122,8 +122,14 @@
   (add-user "daslu" "mysecretPassword!!1")
   (q find-user "daslu")
   (set-page "daslu" "demo1" [:p.bg-green-500.m-5 "hello world 1"])
-  (set-page "daslu" "demo2" [:p.bg-red-500.m-5 "hello world 2"])
-  (set-page "daslu" "demo9" [:p.bg-red-500.m-5 "hello world 2"])
+  (set-page "daslu" "demo2" '[:p.bg-red-500.m-5 [user/customer {:first "daniel" :last "slutzky"}]])
+  (set-page "daslu" "demo3" '[:p.bg-red-500.m-5 [user/users {}]])
+  (set-page "daslu" "index" '[:p.bg-red-500.m-5 [user/user-page "daslu"]])
+
+
+
+
+
   (q-page-id "daslu" "demo1")
   (q-page-id "daslu" "demo0000")
 

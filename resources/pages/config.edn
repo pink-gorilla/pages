@@ -1,4 +1,7 @@
 {:ns-clj [;page.services page.handler
+          ; pages is a goldly ui-extension, so we dont need ns-clj 
+          ; pages might be run in goldly-docs by default. so every user
+          ; has a pages app by default :-)
           ]
  :keybindings []
  :goldly {;; build
@@ -6,7 +9,9 @@
           ;; run-time
           :autoload-cljs-dir ["demoapp"]
           :routes {:app {"" :default-page ; essentially a redirect
-                         [:user "/" :page] :user-page}
+                         [:user "/" :page] :user-page
+                         [:user]  :user-page-index ; default page of user
+                         }
                    :api {; all api endpoints for pages are under
                          ; "/api/pages"
                          ; this is to not have conflict with possible other servies

@@ -28,10 +28,19 @@
                                :type "quantitative"}}
             :config {:view {:stroke "transparent"}}}}])
 
+(def discover-page
+  '[:div
+   [:p.text-xl.text-blue-500 "goldly pages"]
+   [:p "users:"]
+   
+   ;[user/customer {:first "daniel" :last "slutzky"}]
+   [user/users {}]
+   ])
+
 (defn add-seed []
   (add-user "seed" "mysecretPassword!!1")
   
-  (set-page "seed" "index" vega-heatmap)
+  (set-page "seed" "index" discover-page)
 
   (set-page "seed" "demo3" vega-heatmap)
 
